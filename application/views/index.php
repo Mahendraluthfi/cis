@@ -3,26 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Count Information System</title>
+  <title>Quick Count Legislatif System</title>
   <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url() ?>asset/favicon.ico">     
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo base_url()?>asset/select2/dist/css/select2.min.css">      
+  <link rel="stylesheet" href="<?php echo base_url() ?>asset/datatables.net-bs/css/dataTables.bootstrap.min.css">  
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <script src="<?php echo base_url() ?>asset/jquery/dist/jquery.min.js"></script>
+   <style type="text/css">
+    #notifications {
+      cursor: pointer;
+      position: fixed;
+      right: 0px;
+      z-index: 9999;
+      bottom: 0px;
+      margin-bottom: 22px;
+      margin-right: 15px;
+      min-width: 300px; 
+      max-width: 800px;   
+    }
+  </style>
 </head>
 <body class="hold-transition skin-red-light sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php echo base_url() ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>iS</span>
+      <span class="logo-mini" style="font-size: 14px; font-family: verdana;">QCLS</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>CiS</span>
+      <span class="logo-lg" style="font-size: 11px; font-weight: bold;"><img src="<?php echo base_url() ?>asset/favicon.ico" height="35"> Quick Count Legislatif System</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -36,40 +52,26 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="<?php echo base_url() ?>asset/dist/img/avatar5.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $this->session->userdata('userName'); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="<?php echo base_url() ?>asset/dist/img/avatar5.png" class="img-circle" alt="User Image">
-
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo $this->session->userdata('userName'); ?>   
+                  <small>Quick Count Legislatif System</small>               
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+              
               <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+              <li class="user-footer">    
+              <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-sm btn-flat"><span class="glyphicon glyphicon-cog"></span> Setting</a>
+                </div>            
                 <div class="pull-right">
-                  <a href="<?php echo base_url('login/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url('login/logout') ?>" class="btn btn-default btn-sm btn-flat"><span class="glyphicon glyphicon-log-out"></span> Sign out</a>
                 </div>
               </li>
             </ul>
@@ -88,58 +90,31 @@
           <img src="<?php echo base_url() ?>asset/dist/img/avatar5.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $this->session->userdata('userName'); ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+      <!-- search form -->      
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>        
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>            
-          </a>
-        </li>        
-      </ul>
+      <?php $this->load->view($menu); ?>
     </section>
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
+    <!-- Content -->
+    <?php $this->load->view($content); ?>
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; #anothernakaproject 2019
   </footer>
+  <div id="notifications"><?php echo $this->session->flashdata('msg'); ?></div>  
 
   <!-- Control Sidebar -->
   
@@ -151,41 +126,26 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="<?php echo base_url() ?>asset/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo base_url() ?>asset/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php echo base_url() ?>asset/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>asset/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
+<script src="<?php echo base_url() ?>asset/select2/dist/js/select2.full.min.js"></script>
 <script src="<?php echo base_url() ?>asset/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url() ?>asset/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url() ?>asset/dist/js/adminlte.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<!-- Bootstrap 3.3.7 -->
-<!-- Morris.js charts -->
-<!-- <script src="bower_components/raphael/raphael.min.js"></script> -->
-<!-- <script src="bower_components/morris.js/morris.min.js"></script> -->
-<!-- Sparkline -->
-<!-- <script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script> -->
-<!-- jvectormap -->
-<!-- <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
-<!-- <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script> -->
-<!-- jQuery Knob Chart -->
-<!-- <script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script> -->
-<!-- daterangepicker -->
-<!-- <script src="bower_components/moment/min/moment.min.js"></script> -->
-<!-- <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script> -->
-<!-- datepicker -->
-<!-- Bootstrap WYSIHTML5 -->
-<!-- <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script> -->
-<!-- Slimscroll -->
-<!-- <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
-<!-- FastClick -->
-<!-- <script src="bower_components/fastclick/lib/fastclick.js"></script> -->
-<!-- AdminLTE App -->
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="dist/js/pages/dashboard.js"></script> -->
-<!-- AdminLTE for demo purposes -->
-<!-- <script src="dist/js/demo.js"></script> -->
+<script>
+  $('#notifications').slideDown('slow').delay(3000).slideUp('slow');            
+  $('#example').DataTable();    
+  $('select').select2();     
+     $('#datepicker').datepicker({
+      autoclose: true,
+      format : 'yyyy-mm-dd',      
+    })
+
+</script>
+
 </body>
 </html>

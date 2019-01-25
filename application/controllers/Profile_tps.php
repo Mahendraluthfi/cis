@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Profile_tps extends CI_Controller {
 
 	public function __construct()
 	{
@@ -24,16 +24,14 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index()
-	{
-		$data['num_tps'] = $this->db->get('qc_tps')->num_rows();
-		$data['num_profile'] = $this->db->get('qc_profile')->num_rows();
-		$data['show'] = $this->mprofile->show()->result();		
-		$data['menu'] = $this->_menu();									
-		$data['content'] = 'dashboard';
+	{		
+		$data['menu'] = $this->_menu();								
+		$data['view'] = $this->db->get_where('qc_tps', array('userTps' => $this->session->userdata('idUsers')))->row();
+		$data['content'] = 'profile_tps';
 		$this->load->view('index', $data);
 	}
 
 }
 
-/* End of file Dashboard.php */
-/* Location: ./application/controllers/Dashboard.php */
+/* End of file Profile_tps.php */
+/* Location: ./application/controllers/Profile_tps.php */

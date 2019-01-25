@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Report extends CI_Controller {
 
 	public function __construct()
 	{
@@ -9,8 +9,8 @@ class Dashboard extends CI_Controller {
 		if($this->auth->is_logged_in() == false)
 	    {	     
 	        redirect('login');
-	    }
-	    $this->load->model('mprofile');
+	    }	  
+	    $this->load->model('mreport');  
 	}
 
 	public function _menu()
@@ -24,16 +24,14 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index()
-	{
-		$data['num_tps'] = $this->db->get('qc_tps')->num_rows();
-		$data['num_profile'] = $this->db->get('qc_profile')->num_rows();
-		$data['show'] = $this->mprofile->show()->result();		
+	{		
+		$data['view'] = $this->mreport->report()->result();
 		$data['menu'] = $this->_menu();									
-		$data['content'] = 'dashboard';
+		$data['content'] = 'report';
 		$this->load->view('index', $data);
 	}
 
 }
 
-/* End of file Dashboard.php */
-/* Location: ./application/controllers/Dashboard.php */
+/* End of file Report.php */
+/* Location: ./application/controllers/Report.php */

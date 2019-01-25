@@ -13,10 +13,10 @@ class Auth
 	function is_logged_in(){
       if($this->ci->session->userdata('idUsers') == '' && $this->ci->session->userdata('userName') == '' && $this->ci->session->userdata('level') == ''){
          return false;
-      }
+      }      
       return true;
    }
-   
+      
    function restrict(){
       if($this->is_logged_in() == false){
          redirect(base_url());

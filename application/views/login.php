@@ -18,14 +18,14 @@
   <body class="text-center">
     <?php echo form_open('login/submit', array('class' => 'form-signin')); ?>
       <img class="mb-4" src="<?php echo base_url() ?>asset/logo.png" alt="" height="150">
-      <h1 class="h4 mb-3 font-weight-normal">Count Information System</h1>
+      <h1 class="h4 mb-3 font-weight-normal">Quick Count Legislatif System</h1>
       <?php echo $this->session->flashdata('msg'); ?>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>      
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-      <p class="mt-5 mb-3 text-muted">&copy; #AnotherNakaProject 2018</p>
+      <p class="mt-5 mb-3 text-muted">&copy; #AnotherNakaProject 2019</p>
     <?php echo form_close(); ?>
   </body>
 </html>
